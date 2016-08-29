@@ -19,7 +19,7 @@ RUN pip install --no-cache-dir \
     requests_oauthlib \
     urllib3
 
-ENV DUPLICITY_VERSION 0.7.08
+ENV DUPLICITY_VERSION 0.7.09
 ENV DUPLICITY_URL https://code.launchpad.net/duplicity/0.7-series/$DUPLICITY_VERSION/+download/duplicity-$DUPLICITY_VERSION.tar.gz
 ENV DUPLY_VERSION 0.11.3
 
