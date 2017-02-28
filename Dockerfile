@@ -22,8 +22,8 @@ RUN pip install --no-cache-dir \
 
 ENV DUPLICITY_VERSION 0.7.11
 ENV DUPLICITY_URL https://code.launchpad.net/duplicity/0.7-series/$DUPLICITY_VERSION/+download/duplicity-$DUPLICITY_VERSION.tar.gz
-ENV DUPLY_VERSION 1.11.3
-ENV DUPLY_URL "https://sourceforge.net/projects/ftplicity/files/duply%20%28simple%20duplicity%29/1.11.x/duply_$DUPLY_VERSION.tgz/download"
+ENV DUPLY_VERSION 2.0.1
+ENV DUPLY_URL "https://sourceforge.net/projects/ftplicity/files/duply%20%28simple%20duplicity%29/2.0.x/duply_$DUPLY_VERSION.tgz/download"
 
 RUN cd /tmp \
     && wget $DUPLICITY_URL \
