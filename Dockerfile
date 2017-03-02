@@ -46,8 +46,7 @@ RUN cd /tmp \
     && chmod +x /usr/local/bin/confd
 
 # Copy confd files
-COPY duply_conf.toml /etc/confd/conf.d/conf.toml
-COPY duply_conf.tmpl /etc/confd/templates/conf.tmpl
+COPY confd_files /etc/confd/
 
 COPY run-backup.sh /run-backup.sh
 

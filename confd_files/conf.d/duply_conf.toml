@@ -1,5 +1,5 @@
 [template]
-src = "conf.tmpl"
+src = "duply_conf.tmpl"
 dest = "/etc/duply/prod-backup/conf"
 mode = "0700"
 keys = [
