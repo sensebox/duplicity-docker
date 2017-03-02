@@ -4,8 +4,8 @@ set -euo pipefail
 IFS=$'\n\t'
 
 if [[ ! -e /confd-has-run ]]; then
-  mkdir -p /root/.duply/prod-backup
-  chmod -R 0700 /root/.duply
+  mkdir -p /etc/duply/prod-backup
+  chmod -R 0700 /etc/duply
   confd -onetime -backend env
   touch /confd-has-run
 fi

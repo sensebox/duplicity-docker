@@ -1,6 +1,6 @@
 [template]
 src = "conf.tmpl"
-dest = "/root/.duply/prod-backup/conf"
+dest = "/etc/duply/prod-backup/conf"
 mode = "0700"
 keys = [
     "/duply/gpg/key",
