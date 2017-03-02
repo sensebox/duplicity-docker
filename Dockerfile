@@ -22,7 +22,8 @@ RUN pip install --no-cache-dir \
 
 ENV DUPLICITY_VERSION=0.7.11 \
     DUPLY_VERSION=2.0.1 \
-    SCHEDULE="0 30 3 * * *"
+    SCHEDULE="0 30 3 * * *" \
+    DUPLY_ACTION="backup"
 ENV DUPLICITY_URL=https://code.launchpad.net/duplicity/0.7-series/$DUPLICITY_VERSION/+download/duplicity-$DUPLICITY_VERSION.tar.gz \
     DUPLY_URL="https://sourceforge.net/projects/ftplicity/files/duply%20%28simple%20duplicity%29/2.0.x/duply_$DUPLY_VERSION.tgz/download" \
     GOCRON_URL=https://github.com/odise/go-cron/releases/download/v0.0.7/go-cron-linux.gz \

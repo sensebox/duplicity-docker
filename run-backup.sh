@@ -10,4 +10,4 @@ if [[ ! -e /confd-has-run ]]; then
   touch /confd-has-run
 fi
 
-duply prod-backup backup
+duply prod-backup $DUPLY_ACTION
