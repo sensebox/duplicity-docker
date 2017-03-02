@@ -21,7 +21,8 @@ RUN pip install --no-cache-dir \
     urllib3
 
 ENV DUPLICITY_VERSION=0.7.11 \
-    DUPLY_VERSION=2.0.1
+    DUPLY_VERSION=2.0.1 \
+    SCHEDULE="0 30 3 * * *"
 ENV DUPLICITY_URL=https://code.launchpad.net/duplicity/0.7-series/$DUPLICITY_VERSION/+download/duplicity-$DUPLICITY_VERSION.tar.gz \
     DUPLY_URL="https://sourceforge.net/projects/ftplicity/files/duply%20%28simple%20duplicity%29/2.0.x/duply_$DUPLY_VERSION.tgz/download" \
     GOCRON_URL=https://github.com/odise/go-cron/releases/download/v0.0.7/go-cron-linux.gz \
@@ -49,5 +50,4 @@ COPY duply_conf.tmpl /etc/confd/templates/conf.tmpl
 
 COPY run-backup.sh /run-backup.sh
 
-# schedule for 03:30:00 UTC each day
-CMD go-cron -p "0" -s "0 30 3 * * *" -- /run-backup.sh
+CMD go-cron -p "0" -s "$SCHEDULE" -- /run-backup.sh
