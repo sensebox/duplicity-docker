@@ -20,11 +20,14 @@ RUN pip install --no-cache-dir \
     requests_oauthlib \
     urllib3
 
-ENV DUPLICITY_VERSION 0.7.11
-ENV DUPLICITY_URL https://code.launchpad.net/duplicity/0.7-series/$DUPLICITY_VERSION/+download/duplicity-$DUPLICITY_VERSION.tar.gz
-ENV DUPLY_VERSION 2.0.1
-ENV DUPLY_URL "https://sourceforge.net/projects/ftplicity/files/duply%20%28simple%20duplicity%29/2.0.x/duply_$DUPLY_VERSION.tgz/download"
+ENV DUPLICITY_VERSION=0.7.11 \
+    DUPLY_VERSION=2.0.1
+ENV DUPLICITY_URL=https://code.launchpad.net/duplicity/0.7-series/$DUPLICITY_VERSION/+download/duplicity-$DUPLICITY_VERSION.tar.gz \
+    DUPLY_URL="https://sourceforge.net/projects/ftplicity/files/duply%20%28simple%20duplicity%29/2.0.x/duply_$DUPLY_VERSION.tgz/download" \
+    GOCRON_URL=https://github.com/odise/go-cron/releases/download/v0.0.7/go-cron-linux.gz \
+    CONFD_URL=https://github.com/kelseyhightower/confd/releases/download/v0.11.0/confd-0.11.0-linux-amd64
 
+# install duplicity, duply, go-cron and confd
 RUN cd /tmp \
     && wget $DUPLICITY_URL \
     && tar xf duplicity-$DUPLICITY_VERSION.tar.gz \
@@ -33,5 +36,18 @@ RUN cd /tmp \
     && wget "$DUPLY_URL" -O "duply_$DUPLY_VERSION.tgz" \
     && tar xpf duply_$DUPLY_VERSION.tgz \
     && cp -a duply_$DUPLY_VERSION/duply /usr/bin/duply \
-    && cd / && rm -rf /tmp/*
+    && cd / && rm -rf /tmp/* \
+    && curl -L $GOCRON_URL \
+    | zcat > /usr/local/bin/go-cron \
+    && chmod u+x /usr/local/bin/go-cron \
+    && curl -L $CONFD_URL > /usr/local/bin/confd \
+    && chmod +x /usr/local/bin/confd
 
+# Copy confd files
+COPY duply_conf.toml /etc/confd/conf.d/conf.toml
+COPY duply_conf.tmpl /etc/confd/templates/conf.tmpl
+
+COPY run-backup.sh /run-backup.sh
+
+# schedule for 03:30:00 UTC each day
+CMD go-cron -p "0" -s "0 30 3 * * *" -- /run-backup.sh
