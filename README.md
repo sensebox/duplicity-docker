@@ -1,7 +1,6 @@
-# Duplicity docker image
+# Duplicity docker image used for openSenseMap backup
 
-This docker image allows running duplicity on (potentially) any supported backend.
-
-It also includes duply, a simpler frontend for duplicity.
+This is the docker image used for backing up openSenseMap using duply and duplicity.
+It includes go-cron to run duply regularly.
 
 The `compose` folder contains example of using this image.
