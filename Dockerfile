@@ -45,7 +45,7 @@ RUN cd /tmp \
     && curl -L $CONFD_URL > /usr/local/bin/confd \
     && chmod +x /usr/local/bin/confd
 
-COPY run-backup.sh /run-backup.sh
+COPY scripts/ /
 
 # Copy confd files
 COPY confd_files /etc/confd/
