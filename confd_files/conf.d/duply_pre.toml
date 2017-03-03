@@ -1,0 +1,7 @@
+[template]
+src = "duply_pre.tmpl"
+dest = "/etc/duply/prod-backup/pre"
+mode = "0700"
+keys = [
+    "/duply/pre",
+]

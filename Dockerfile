@@ -45,9 +45,9 @@ RUN cd /tmp \
     && curl -L $CONFD_URL > /usr/local/bin/confd \
     && chmod +x /usr/local/bin/confd
 
+COPY run-backup.sh /run-backup.sh
+
 # Copy confd files
 COPY confd_files /etc/confd/
-
-COPY run-backup.sh /run-backup.sh
 
 CMD go-cron -p "0" -s "$SCHEDULE" -- /run-backup.sh

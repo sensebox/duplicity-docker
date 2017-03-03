@@ -1,0 +1,7 @@
+[template]
+src = "duply_post.tmpl"
+dest = "/etc/duply/prod-backup/post"
+mode = "0700"
+keys = [
+    "/duply/post",
+]
